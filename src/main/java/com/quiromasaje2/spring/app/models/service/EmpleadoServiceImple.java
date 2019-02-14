@@ -10,11 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.quiromasaje2.spring.app.models.dao.IEmpleadoDao;
-import com.quiromasaje2.spring.app.models.dao.IUsuarioDao;
 import com.quiromasaje2.spring.app.models.entity.Empleado;
 import com.quiromasaje2.spring.app.models.entity.Role;
 import com.quiromasaje2.spring.app.models.entity.Usuario;
-import com.quiromasaje2.spring.app.models.form.UserForm;
+import com.quiromasaje2.spring.app.security.repository.IUsuarioDao;
 
 @Service
 public class EmpleadoServiceImple implements IEmpleadoService{
@@ -51,7 +50,7 @@ public class EmpleadoServiceImple implements IEmpleadoService{
 		List<Role> roles= new ArrayList<>();
 		roles.add(new Role(user.getId(),"ROLE_USER"));
 		user.setRoles(roles);
-		user.setUsername(Usuario.getEmail());
+		user.setUsername(Usuario.getNombre());
 		usuarioDao.save(user);
 		return Usuario;
 	}
@@ -69,11 +68,7 @@ public class EmpleadoServiceImple implements IEmpleadoService{
 		
 	}
 
-	@Override
-	public Empleado save(UserForm cliente) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 //	@Override
 //	public Usuario save(UserForm form) {

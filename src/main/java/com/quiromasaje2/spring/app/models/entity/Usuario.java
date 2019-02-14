@@ -41,7 +41,12 @@ public class Usuario implements Serializable {
 	@JoinColumn(name = "user_id")
 	private List<Role> roles;
 
+	public Usuario() {}
 
+	public Usuario( String paswword, String username) {
+		this.username = username;
+		this.password = paswword;
+	}
 
 	public String getUsername() {
 		return username;

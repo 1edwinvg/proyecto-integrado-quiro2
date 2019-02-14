@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quiromasaje2.spring.app.models.entity.Empleado;
-import com.quiromasaje2.spring.app.models.form.UserForm;
+import com.quiromasaje2.spring.app.models.entity.Usuario;
 import com.quiromasaje2.spring.app.models.service.IEmpleadoService;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
-@RequestMapping("/app")
+@RequestMapping("/api")
 public class EmpleadoController {
 
 	@Autowired
@@ -36,9 +36,11 @@ public class EmpleadoController {
 	public Empleado show(@PathVariable Long id) {
 		return this.UsuarioService.findById(id);
 	}
+	
 	@PostMapping("/usuarios")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Empleado create(@RequestBody UserForm Usuario) {
+	public Empleado create(@RequestBody Empleado Usuario) {
+		Usuario.setCreateAt(new Date());
 		return UsuarioService.save(Usuario);
 	}
 	
